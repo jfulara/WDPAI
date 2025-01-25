@@ -1,0 +1,242 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Calistoga';
+    font-weight: normal;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+}
+
+
+nav {
+    width: 18vw;
+    height: 98.9vh;
+    margin: 0;
+    padding: 0;
+    background-color: #d3ffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-image: linear-gradient(to bottom, #25C839, #0F8BD3);
+    background: linear-gradient(#d3ffff, #d3ffff) padding-box, 
+                linear-gradient(to bottom, #25C839, #0F8BD3) border-box;
+    border: 5px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav > div.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav > div.logo > p {
+    text-align: center;
+    font-family: 'Lily Script One';
+    font-size: 55px;
+    background-image: linear-gradient(to right, #25C839, #0F8BD3);
+    color: transparent;
+    background-clip: text;
+}
+
+nav > ul.active {
+    display: flex;
+    padding: 20px;
+    list-style-type: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+nav > ul.mobile-icons {
+    display: none;
+}
+
+nav > ul > li {
+    width: 14vw;
+    align-items: start;
+    border-style: none none solid none;
+    border-width: 2px;
+    padding: 18px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > ul > li.first {
+    border-style: solid none solid none;
+}
+
+nav > ul > li > i {
+    font-size: 1em;
+}
+
+
+nav > ul > li:hover {
+    color: #af238cb0;
+    border-bottom: 2px solid black;
+}
+
+nav > ul > li.first:hover {
+    color: #af238cb0;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+nav > ul > li:active {
+    color: #af238c;
+    border-bottom: 2px solid black;
+}
+
+nav > ul > li.first:active {
+    color: #af238c;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+nav > div.buttons{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+nav > div.buttons > button{
+    background-color: #d3ffff;
+    padding: 15px 25px;
+    width: 11vw;
+    justify-content: center;
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Calistoga';
+    display: inline-block;
+    border-radius: 2rem;
+    display: flex;
+    position: relative;
+    margin: 10px;
+}
+
+nav > div.buttons > button.settings{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav > div.buttons > button.settings > i{
+    font-size: 1.7em;
+}
+
+main {
+    height: 96vh;
+    margin-left: 20vw;
+    padding: 1em;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-color: antiquewhite;
+    border-radius: 1rem;
+}
+
+.card > img {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+}
+
+
+.card > p {
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+
+.image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff00009e;
+    border-radius: 1rem 1rem 0 0;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    nav > ul {
+        display: none;
+    }
+
+    nav > ul.mobile-icons {
+        display: block;
+    }
+
+    nav > ul.active {
+        display: block;
+        position: fixed;
+        width: 70%;
+        margin-top: 5em;
+        height: 100%;
+    }
+
+    nav > ul.active > li {
+        flex-direction: row;
+        padding: 1em;
+        justify-content: flex-start;
+    }
+}
+
+
+@media print { 
+    nav {
+        display: none;
+    }
+
+    main {
+        margin: 0;
+        padding: 0;
+    }
+
+    .floating-icon {
+        display: none;
+    }
+
+    p {
+        font-size: 1.5em;
+    }
+}
