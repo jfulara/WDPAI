@@ -86,6 +86,16 @@
                     This is our example photo news.
                 </p>
             </div>
+
+            <div class="card">
+                <img src="public/uploads/<?= $expense->getImage(); ?>">
+                <div>
+                    <h2><?= $expense->getTitle(); ?></h2>
+                    <h1><?= $expense->getAmount(); ?></h1>
+                    <p><?= $expense->getCategory(); ?></p>
+                    <p><?= $expense->getDate(); ?></p>
+                </div>
+            </div>
         </div>
 
         <p>

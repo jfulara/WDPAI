@@ -10,4 +10,6 @@ $path = parse_url($path, PHP_URL_PATH);
 Routing::get('', 'DashboardController');
 Routing::get('dashboard', 'DashboardController');
 Routing::post('login', 'SecurityController');
+Routing::post('addExpense', 'ExpenseController');
+
 Routing::run($path);

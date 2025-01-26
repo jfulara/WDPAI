@@ -260,6 +260,18 @@ form.login {
     align-items: center;
 }
 
+section.expense-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.expense-form > form {
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 768px) {
     nav > ul {
         display: none;
