@@ -41,13 +41,6 @@
     </nav>
     <main>
         <h1>Podsumowanie miesiąca</h1>
-        <h2><?= $name ?></h2>
-        <h2><?= isset($email) ? $email : "" ?></h2>
-        <h2>
-            <?php if (isset($password)): ?>
-                <h2><?= $password ?></h2>
-            <?php endif; ?>
-        </h2>
         <div class="cards">
             <div class="card">
                 <img src="https://random.imagecdn.app/700/700">

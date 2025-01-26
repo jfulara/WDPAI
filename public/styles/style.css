@@ -37,13 +37,13 @@ nav {
     justify-content: space-around;
 }
 
-nav > div.logo {
+.logo {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-nav > div.logo > p {
+.logo > p {
     text-align: center;
     font-family: 'Lily Script One';
     font-size: 3.4rem;
@@ -196,6 +196,69 @@ main {
     color: white;
 }
 
+.login-container {
+    position: relative;
+    height: 70vh;
+    width: 70vw;
+    align-content: center;
+    justify-content: space-evenly;
+    margin: 15vh 15vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: row;
+    border-radius: 75px;
+    border-image: linear-gradient(to bottom, #25C839, #0F8BD3);
+    border: 5px solid transparent;
+    background: linear-gradient(#FFFFFF, #FFFFFF) padding-box,
+    linear-gradient(to bottom, #25C839, #0F8BD3) border-box;
+}
+
+.logo-side {
+    height: 35rem;
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-side > div.logo {
+    margin: 1rem 0;
+}
+
+.logo-side > div.logo > p {
+    font-size: 7rem;
+    margin: 0;
+    width: 35rem;
+}
+
+.logo-side > div.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.logo-side > div.description > p.main-description {
+    font-size: 2.7rem;
+    margin: 0 0 2rem 0;
+}
+
+.logo-side > div.description > p.additional-description {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.form-side {
+    height: 30rem;
+    width: 30rem;
+}
+
+form.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 @media (max-width: 768px) {
     nav > ul {

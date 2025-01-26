@@ -9,29 +9,29 @@ class Routing{
     public static function get($url, $controller){
         self::$routes[$url] = $controller;
     }
+
+    public static function post($url, $controller){
+        self::$routes[$url] = $controller;
+    }
+
     public static function run ($url) {
         $action = explode("/", $url)[0];
-        $controller = null;
 
         if (!array_key_exists($action, self::$routes)) {
             die("Wrong url!"); //TODO 404
         }
 
-        
-        if(in_array($action, ["dashboard", ""])){
-            $controller = "DashboardController";
+        if(in_array($action, ["dashboard"])){
             $action = 'dashboard';
         }
 
         if(in_array($action, ["register", "login"])){
-            $controller = "SecurityController";
             $action = 'login';
         }
-    
-        //$controller = self::$routes[$action];
+
+        $controller = self::$routes[$action];
         $object = new $controller;
-        //$action = $action ?: 'index';
-    
+        $action = $action ?: 'index';
         $object->$action();
     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="public/styles/style.css" rel="stylesheet">
+    <link href="public/styles/security.css" type="text/css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lily Script One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/8fd9367667.js" crossorigin="anonymous"></script>
@@ -11,90 +12,39 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <p>
-                Fineance
-            </p>
-        </div>
-        <ul class="active">
-            <li class="first">Podsumowanie<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Analiza budżetu<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Cele miesięczne<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Historia wydatków<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Statystyki<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Oszczędzanie<i class="fa-solid fa-chevron-right"></i></li>
-        </ul>
-        <div class="buttons">
-            <button class="technical-help">
-                Pomoc techniczna
-            </button>
-            <button class="settings">
-                <i class="fa-solid fa-gear"></i>Ustawienia
-            </button>
-        </div>
-       
-        <ul class="mobile-icons">
-            <i class="fa-solid fa-bars"></i>
-        </ul>
-
-    </nav>
     <main>
-        <h1>Podsumowanie miesiąca</h1>
-        <form action="/login" method="POST">
-            <input type="email" name="email"></input>
-            <input type="password" name="password"></input>
-            <button type="submit">SIGN IN</button>
-        </form>
-        <div class="cards">
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <div class="image-placeholder">
-                    NEWS!
+        <div class="login-container">
+            <div class="logo-side">
+                <div class="logo">
+                    <p>
+                        Fineance
+                    </p>
                 </div>
-                <p>
-                    This is our example photo news.
-                </p>
+                <div class="description">
+                    <p class="main-description">
+                       Dzień dobry!
+                    </p>
+                    <p class="additional-description">
+                        Zaloguj się lub utwórz nowe konto:
+                    </p>
+                </div>
             </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
+            <div class="form-side">
+                <form class="login" action="/login" method="POST">
+                    <div class="messages">
+                        <?php if(isset($messages)) {
+                            foreach ($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
+                    <input name="email" type="text" placeholder="email@email.com">
+                    <input name="password" type="password" placeholder="password">
+                    <button type="submit">SIGN IN</button>
+                </form>
             </div>
         </div>
-
-        <p>
-        </p>
     </main>
 </body>
 </html>
