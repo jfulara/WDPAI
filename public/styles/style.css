@@ -46,7 +46,7 @@ nav > div.logo {
 nav > div.logo > p {
     text-align: center;
     font-family: 'Lily Script One';
-    font-size: 55px;
+    font-size: 3.4rem;
     background-image: linear-gradient(to right, #25C839, #0F8BD3);
     color: transparent;
     background-clip: text;
