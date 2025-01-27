@@ -28,4 +28,18 @@ class ExpenseRepository extends Repository
 
         $stmt->execute([$id_user, $expense->getTitle(), $expense->getAmount(), $expense->getDate(), $expense->getCategory()]);
     }
+
+    public function getExpenses(): array {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare("SELECT * FROM expenses");
+        $stmt->execute();
+        $expenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($expenses as $expense) {
+            $result[] = new Expense($expense['title'], $expense['amount'], $expense['date'], $expense['category']);
+        }
+
+        return $result;
+    }
 }

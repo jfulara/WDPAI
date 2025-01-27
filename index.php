@@ -7,9 +7,11 @@ require_once 'src/controllers/AppController.php';
 $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url($path, PHP_URL_PATH);
 
-Routing::get('', 'DashboardController');
+Routing::get('', 'DefaultController');
 Routing::get('dashboard', 'DashboardController');
+Routing::get('expenses', 'ExpenseController');
 Routing::post('login', 'SecurityController');
+Routing::post('register', 'SecurityController');
 Routing::post('addExpense', 'ExpenseController');
 
 Routing::run($path);

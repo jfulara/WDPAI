@@ -15,6 +15,10 @@ class ExpenseController extends AppController{
         $this->expenseRepository = new ExpenseRepository();
     }
 
+    public function expenses() {
+        $expenses = $this->expenseRepository->getExpenses();
+        $this->render("expenses", ['expenses' => $expenses]);
+    }
 
     public function addExpense(){
         if ($this->isPost()) {
@@ -23,7 +27,7 @@ class ExpenseController extends AppController{
             $expense = new Expense($_POST['title'], $_POST['amount'], $_POST['date'], $_POST['category']);
             $this->expenseRepository->addExpense($expense);
 
-            return $this->render('dashboard', ['messages' => $this->messages, 'expense' => $expense]);
+            return $this->render('expenses', ['messages' => $this->messages, 'expenses' => $this->expenseRepository->getExpenses()]);
         }
         return $this->render('addExpense', ['messages' => $this->messages]);
     }

@@ -44,4 +44,31 @@ class SecurityController extends AppController{
             'password' => $password
         ]);*/
     }
+
+    public function register() {
+        $userRepository = new UserRepository();
+
+        if (!$this->isPost()) {
+            return $this->render('register');
+        }
+
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $user = $userRepository->getUser($email);
+
+        if (!$user) {
+            return $this->render('login', ['messages' => ['User does not exist!']]);
+        }
+
+        if ($user->getEmail() !== $email) {
+            return $this->render('login', ['messages' => ['User with that email does not exist!']]);
+        }
+
+        if ($user->getPassword() !== $password) {
+            return $this->render('login', ['messages' => ['Wrong password!']]);
+        }
+
+        return $this->render('dashboard');
+    }
 }

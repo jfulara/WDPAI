@@ -42,59 +42,18 @@
     <main>
         <h1>Podsumowanie miesiąca</h1>
         <div class="cards">
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <div class="image-placeholder">
-                    NEWS!
+            <section class="expenses">
+                <?php foreach ($expenses as $expense): ?>
+                <div class="card">
+                    <div>
+                        <h2><?= $expense->getTitle(); ?></h2>
+                        <h1><?= $expense->getAmount(); ?> zł</h1>
+                        <p><?= $expense->getCategory(); ?></p>
+                        <p><?= $expense->getDate(); ?></p>
+                    </div>
                 </div>
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-            <div class="card">
-                <img src="public/uploads/<?= $expense->getImage(); ?>">
-                <div>
-                    <h2><?= $expense->getTitle(); ?></h2>
-                    <h1><?= $expense->getAmount(); ?></h1>
-                    <p><?= $expense->getCategory(); ?></p>
-                    <p><?= $expense->getDate(); ?></p>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            </section>
         </div>
 
         <p>
