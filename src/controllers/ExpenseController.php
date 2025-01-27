@@ -2,23 +2,30 @@
 
 require_once 'AppController.php';
 require_once __DIR__.'/../models/Expense.php';
-
+require_once __DIR__.'/../repository/ExpenseRepository.php';
 
 class ExpenseController extends AppController{
     const MAX_FILE_SIZE = 1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
     private $messages = [];
+    private $expenseRepository;
+
+    public function __construct() {
+        $this->expenseRepository = new ExpenseRepository();
+    }
+
 
     public function addExpense(){
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            move_uploaded_file($_FILES['file']['tmp_name'], dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']);
+        if ($this->isPost()) {
+            //move_uploaded_file($_FILES['file']['tmp_name'], dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']);
 
-            $expense = new Expense($_POST['title'], $_POST['amount'], $_POST['date'], $_POST['category'], $_FILES['file']['name']);
+            $expense = new Expense($_POST['title'], $_POST['amount'], $_POST['date'], $_POST['category']);
+            $this->expenseRepository->addExpense($expense);
 
             return $this->render('dashboard', ['messages' => $this->messages, 'expense' => $expense]);
         }
-        $this->render('addExpense', ['messages' => $this->messages]);
+        return $this->render('addExpense', ['messages' => $this->messages]);
     }
 
     private function validate(array $file): bool {

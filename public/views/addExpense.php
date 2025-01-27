@@ -54,7 +54,6 @@
                 <input name="amount" type="number" step="0.01" min="0.00" placeholder="amount">
                 <input name="date" type="date" placeholder="date">
                 <input name="category" type="text" placeholder="category">
-                <input type="file" name="file">
                 <button type="submit">SEND</button>
             </form>
         </section>
