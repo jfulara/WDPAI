@@ -22,13 +22,13 @@ class Routing{
             die("Wrong url!"); //TODO 404
         }
 
-        if(in_array($action, ["dashboard"])){
+        /*if(in_array($action, ["dashboard"])){
             $action = 'dashboard';
         }
 
         if(in_array($action, ["register", "login"])){
             $action = 'login';
-        }
+        }*/
 
         $controller = self::$routes[$action];
         $object = new $controller;

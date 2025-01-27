@@ -11,6 +11,8 @@ services:
       - .:/app/
     links:
       - php
+    networks:
+      - pg-network
 
   php:
     build:
@@ -18,6 +20,8 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+    networks:
+      - pg-network
 
   db:
     build:
@@ -41,3 +45,4 @@ services:
     
 networks:
   pg-network:
+    driver: bridge
