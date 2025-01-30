@@ -6,6 +6,7 @@
     <link href="public/styles/style.css" type="text/css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lily Script One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Average Sans' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/8fd9367667.js" crossorigin="anonymous"></script>
     <script src="public/scripts/nav.js" defer></script>
     <title>Document</title>
@@ -18,12 +19,12 @@
             </p>
         </div>
         <ul class="active">
-            <li class="first">Podsumowanie<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Analiza budżetu<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Cele miesięczne<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Historia wydatków<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Statystyki<i class="fa-solid fa-chevron-right"></i></li>
-            <li>Oszczędzanie<i class="fa-solid fa-chevron-right"></i></li>
+            <li><a class="first active">Podsumowanie<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a>Analiza budżetu<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a>Cele miesięczne<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="expenses">Historia wydatków<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a>Statystyki<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a>Oszczędzanie<i class="fa-solid fa-chevron-right"></i></a></li>
         </ul>
         <div class="buttons">
             <button class="technical-help">

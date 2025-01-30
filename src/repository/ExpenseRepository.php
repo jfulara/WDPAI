@@ -42,4 +42,14 @@ class ExpenseRepository extends Repository
 
         return $result;
     }
+
+    public function getExpensesByTitle(string $searchString): array {
+        $searchString = '%'.strtolower($searchString).'%';
+
+        $stmt = $this->database->connect()->prepare("SELECT * FROM expenses WHERE LOWER(title) LIKE :search");
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

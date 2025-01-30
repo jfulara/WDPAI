@@ -17,4 +17,21 @@ class UserRepository extends Repository
 
         return new User($user['email'], $user['password'], $user['name'], $user['surname']);
     }
+
+    public function createUser(string $name, string $surname, string $email, string $password): void {
+        $stmt = $this->database->connect()->prepare("
+            INSERT INTO users(name, surname, email, password)
+            VALUES (:name, :surname, :email, :password)");
+
+        $options = [
+            'cost' => 12
+        ];
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="public/styles/style.css" type="text/css" rel="stylesheet">
+    <link href="public/styles/expenses.css" type="text/css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lily Script One' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/8fd9367667.js" crossorigin="anonymous"></script>
