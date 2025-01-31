@@ -16,11 +16,23 @@ class ExpenseController extends AppController{
     }
 
     public function expenses() {
+        require_once 'session_config.php';
+
+        if (!isset($_SESSION['user_id'])) {
+            return $this->render('login');
+        }
+
         $expenses = $this->expenseRepository->getExpenses();
         $this->render("expenses", ['expenses' => $expenses]);
     }
 
     public function addExpense(){
+        require_once 'session_config.php';
+
+        if (!isset($_SESSION['user_id'])) {
+            return $this->render('login');
+        }
+
         if ($this->isPost()) {
             //move_uploaded_file($_FILES['file']['tmp_name'], dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']);
 

@@ -6,7 +6,11 @@ require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController{
     public function login(){
-        $userRepository = new UserRepository();
+        require_once 'session_config.php';
+
+        if (isset($_SESSION['user_id'])) {
+            return $this->render('dashboard');
+        }
 
         if (!$this->isPost()) {
             return $this->render('login');
@@ -15,38 +19,44 @@ class SecurityController extends AppController{
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $user = $userRepository->getUser($email);
+        $errors = [];
 
-        if (!$user) {
-            return $this->render('login', ['messages' => ['User does not exist!']]);
+        if ($this->isEmailInputEmpty($email)) {
+            $errors['empty_email'] = 'All fields must be filled!';
+        } else if ($this->isUserNotExistent($email)) {
+            $errors['user_not_existent'] = 'User with this email does not exist!';
+        } else if ($this->isPasswordInputEmpty($password)) {
+            $errors['empty_password'] = 'All fields must be filled!';
+        } else if ($this->isPasswordWrong($email, $password)) {
+            $errors['wrong_password'] = 'Wrong password!';
         }
 
-        if ($user->getEmail() !== $email) {
-            return $this->render('login', ['messages' => ['User with that email does not exist!']]);
+        if ($errors) {
+            $_SESSION["login_errors"] = $errors;
+
+            $loginData = [
+                'email' => $email
+            ];
+
+            $_SESSION["login_data"] = $loginData;
+
+            return $this->render('login');
         }
 
-        if ($user->getPassword() !== $password) {
-            return $this->render('login', ['messages' => ['Wrong password!']]);
-        }
+        $_SESSION["user_id"] = $this->getUserId($email);
+        $_SESSION["user_name"] = htmlspecialchars($this->getUserName($email));
+
+        $_SESSION['last_regeneration'] = time();
 
         return $this->render('dashboard');
-
-        /*if($this->isGet()){
-            return $this->render("login");
-        }
-
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $this->render("dashboard", [
-            'name' => 'XYZ',
-            'email' => $email,
-            'password' => $password
-        ]);*/
     }
 
     public function register() {
-        $userRepository = new UserRepository();
+        require_once 'session_config.php';
+
+        if (isset($_SESSION['user_id'])) {
+            return $this->render('dashboard');
+        }
 
         if (!$this->isPost()) {
             return $this->render('register');
@@ -60,11 +70,11 @@ class SecurityController extends AppController{
 
         $errors = [];
 
-        if ($this->isInputEmpty($name, $surname, $email, $password, $confirmPassword)) {
+        if ($this->isRegisterInputEmpty($name, $surname, $email, $password, $confirmPassword)) {
             $errors['empty_input'] = 'All fields must be filled!';
         }
 
-        if ($this->isEmailInvalid($email)) {
+        if (!$this->isEmailInputEmpty($email) && $this->isEmailInvalid($email)) {
             $errors['invalid_email'] = 'Invalid email!';
         }
 
@@ -75,8 +85,6 @@ class SecurityController extends AppController{
         if ($this->arePasswordsDifferent($password, $confirmPassword)) {
             $errors['different_passwords'] = 'Passwords do not match!';
         }
-
-        require_once 'session_config.php';
 
         if ($errors) {
             $_SESSION["signup_errors"] = $errors;
@@ -97,7 +105,65 @@ class SecurityController extends AppController{
         return $this->render('login', ['confirmations' => ['Registration successful!']]);
     }
 
-    function isInputEmpty(string $name, string $surname, string $email, string $password, string $confirmPassword): bool {
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+
+        return $this->render('login');
+    }
+
+    function isEmailInputEmpty(string $email): bool {
+        if (empty($email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isUserNotExistent(string $email): bool {
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+
+        if (!$user) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isPasswordInputEmpty(string $password): bool {
+        if (empty($password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isPasswordWrong(string $email, string $password): bool {
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+
+        if(!password_verify($password, $user->getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getUserId($email): int {
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+        return $user->getId();
+    }
+
+    function getUserName($email): string {
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+        return $user->getName();
+    }
+
+    function isRegisterInputEmpty(string $name, string $surname, string $email, string $password, string $confirmPassword): bool {
         if (empty($name) || empty($surname) || empty($email) || empty($password) || empty($confirmPassword)) {
             return true;
         } else {

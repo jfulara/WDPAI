@@ -1,3 +1,34 @@
+<?php
+require_once "session_config.php";
+function checkLoginErrors() {
+    if (isset($_SESSION['login_errors'])) {
+        $errors = $_SESSION['login_errors'];
+
+        foreach ($errors as $error) {
+            echo '<p class="error">' . $error . '</p>';
+        }
+    }
+}
+
+function loginInputs() {
+    if (isset($_SESSION['login_data']['email']) && !isset($_SESSION['login_errors']['user_not_existent'])) {
+        echo '<input name="email" type="text" placeholder="E-mail" value="' . $_SESSION['login_data']['email'] . '">';
+    } else {
+        echo '<input name="email" type="text" placeholder="E-mail">';
+    }
+
+    echo '<input name="password" type="password" placeholder="Hasło">';
+
+    if (isset($_SESSION['login_errors'])) {
+        unset($_SESSION['login_errors']);
+    }
+
+    if (isset($_SESSION['login_data'])) {
+        unset($_SESSION['login_data']);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,20 +65,18 @@
                 <form class="login" action="/login" method="POST">
                     <div class="messages">
                         <?php
-                        if(isset($messages)) {
-                            foreach ($messages as $message) {
-                                echo '<p class="error">' . $message . '</p>';
-                            }
-                        }
                         if(isset($confirmations)) {
                             foreach ($confirmations as $confirmation) {
                                 echo '<p class="confirmation">' . $confirmation . '</p>';
                             }
+                        } else {
+                            checkLoginErrors();
                         }
                         ?>
                     </div>
-                    <input name="email" type="text" placeholder="E-mail">
-                    <input name="password" type="password" placeholder="Hasło">
+                    <?php
+                    loginInputs();
+                    ?>
                     <div class="button-background">
                         <button class="special-button" type="submit">Zaloguj się</button>
                     </div>

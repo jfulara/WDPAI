@@ -15,7 +15,7 @@ class UserRepository extends Repository
             return null;
         }
 
-        return new User($user['email'], $user['password'], $user['name'], $user['surname']);
+        return new User($user['name'], $user['surname'], $user['email'], $user['password'], $user['id']);
     }
 
     public function createUser(string $name, string $surname, string $email, string $password): void {

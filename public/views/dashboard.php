@@ -1,3 +1,13 @@
+<?php
+require_once 'session_config.php';
+
+function outputUserName() {
+    if (isset($_SESSION['user_id'])) {
+        echo 'Witaj ' . $_SESSION['user_name'] . '!';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +22,17 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
+    <nav class="menu">
         <div class="logo">
             <p>
                 Fineance
+            </p>
+        </div>
+        <div class="welcome-string">
+            <p>
+                <?php
+                outputUserName();
+                ?>
             </p>
         </div>
         <ul class="active">
@@ -33,73 +50,35 @@
             <button class="settings">
                 <i class="fa-solid fa-gear"></i>Ustawienia
             </button>
+            <form class="logout" action="/logout" method="post">
+                <button class="logout" type="submit">Wyloguj się</button>
+            </form>
         </div>
-       
         <ul class="mobile-icons">
             <i class="fa-solid fa-bars"></i>
         </ul>
-
+    </nav>
+    <nav class="adder">
+        <ul class="adder-list">
+            <li class="adder-item">
+                <a href="addIncome" class="adder-link">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span class="link-text">&nbsp;&nbsp;&nbsp;&nbsp;Dodaj wpływ</span>
+                </a>
+            </li>
+            <li class="adder-item">
+                <a href="addExpense" class="adder-link">
+                    <i class="fa-solid fa-circle-minus"></i>
+                    <span class="link-text">&nbsp;&nbsp;&nbsp;&nbsp;Dodaj wydatek</span>
+                </a>
+            </li>
+        </ul>
+        <div class="plus">
+            <i class="fa-solid fa-plus"></i>
+        </div>
     </nav>
     <main>
         <h1>Podsumowanie miesiąca</h1>
-        <div class="cards">
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <div class="image-placeholder">
-                    NEWS!
-                </div>
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-    
-            <div class="card">
-                <img src="https://random.imagecdn.app/700/700">
-                <p>
-                    This is our example photo news.
-                </p>
-            </div>
-            <div class="card">
-                <img src="public/uploads/<?= $expense->getImage(); ?>">
-                <div>
-                    <h2><?= $expense->getTitle(); ?></h2>
-                    <h1><?= $expense->getAmount(); ?></h1>
-                    <p><?= $expense->getCategory(); ?></p>
-                    <p><?= $expense->getDate(); ?></p>
-                </div>
-            </div>
-        </div>
-
-        <p>
-        </p>
     </main>
 </body>
 </html>

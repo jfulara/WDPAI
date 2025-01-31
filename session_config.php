@@ -17,7 +17,6 @@ if (!isset($_SESSION['last_regeneration'])) {
     regenerateSessionId();
 } else {
     $interval = 60 * 30;
-
     if (time() - $_SESSION['last_regeneration'] >= $interval) {
         regenerateSessionId();
     }
@@ -28,7 +27,24 @@ function regenerateSessionId() {
     $_SESSION['last_regeneration'] = time();
 }
 
-/*if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-    exit;
+/*if (isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['last_regeneration'])) {
+        regenerateSessionIdLoggedIn();
+    } else {
+        $interval = 60 * 30;
+        if (time() - $_SESSION['last_regeneration'] >= $interval) {
+            regenerateSessionIdLoggedIn();
+        }
+    }
+} */
+
+/*function regenerateSessionIdLoggedIn() {
+    session_regenerate_id(true);
+
+    $userId = $_SESSION['user_id'];
+    $newSessionId = session_create_id();
+    $sessionId = $newSessionId . "_" . $userId;
+    session_id($sessionId);
+
+    $_SESSION['last_regeneration'] = time();
 }*/

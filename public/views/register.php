@@ -23,7 +23,7 @@ function signupInputs() {
         echo '<input name="surname" type="text" placeholder="Nazwisko">';
     }
 
-    if (isset($_SESSION['signup_data']['email']) && (!isset($_SESSION['signup_errors']['email_used'])) && (!isset($_SESSION['signup_errors']['invalid_email']))) {
+    if (isset($_SESSION['signup_data']['email']) && !isset($_SESSION['signup_errors']['email_used']) && !isset($_SESSION['signup_errors']['invalid_email'])) {
         echo '<input name="email" type="text" placeholder="E-mail" value="' . $_SESSION['signup_data']['email'] . '">';
     } else {
         echo '<input name="email" type="text" placeholder="E-mail">';
@@ -58,40 +58,40 @@ function signupInputs() {
     <title>Register</title>
 </head>
 <body>
-<main>
-    <div class="login-container">
-        <div class="logo-side">
-            <div class="logo">
-                <p>
-                    Fineance
-                </p>
+    <main>
+        <div class="login-container">
+            <div class="logo-side">
+                <div class="logo">
+                    <p>
+                        Fineance
+                    </p>
+                </div>
+                <div class="description">
+                    <p class="additional-description">
+                        Utwórz konto:
+                    </p>
+                </div>
+                <div class="login-link">
+                    <p>Masz już konto?&nbsp;</p>
+                    <a href="login">Przejdź do logowania!</a>
+                </div>
             </div>
-            <div class="description">
-                <p class="additional-description">
-                    Utwórz konto:
-                </p>
-            </div>
-            <div class="login-link">
-                <p>Masz już konto?&nbsp;</p>
-                <a href="login">Przejdź do logowania!</a>
-            </div>
-        </div>
-        <div class="form-side">
-            <form class="register" action="/register" method="POST">
-                <div class="messages">
+            <div class="form-side">
+                <form class="register" action="/register" method="POST">
+                    <div class="messages">
+                        <?php
+                        checkSignupErrors();
+                        ?>
+                    </div>
                     <?php
-                    checkSignupErrors();
+                    signupInputs();
                     ?>
-                </div>
-                <?php
-                signupInputs();
-                ?>
-                <div class="button-background">
-                    <button class="special-button" type="submit">Zarejestruj się</button>
-                </div>
-            </form>
+                    <div class="button-background">
+                        <button class="special-button" type="submit">Zarejestruj się</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 </body>
 </html>
