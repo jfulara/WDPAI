@@ -9,11 +9,13 @@ $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('', 'DefaultController');
 Routing::get('dashboard', 'DashboardController');
-Routing::get('expenses', 'ExpenseController');
+Routing::get('operations', 'OperationController');
 Routing::get('logout', 'SecurityController');
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
-Routing::post('addExpense', 'ExpenseController');
-Routing::post('searchExpense', 'ExpenseController');
+Routing::post('addExpense', 'OperationController');
+Routing::post('addIncome', 'OperationController');
+Routing::post('searchExpense', 'OperationController');
+Routing::post('searchIncome', 'OperationController');
 
 Routing::run($path);

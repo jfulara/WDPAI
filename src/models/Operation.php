@@ -1,13 +1,13 @@
 <?php
 
-class Expense
+class Operation
 {
     private $title;
     private $amount;
     private $date;
     private $category;
 
-    public function __construct($title, $amount, $date, $category) {
+    public function __construct(string $title, string $amount, string $date, string $category) {
         $this->title = $title;
         $this->amount = $amount;
         $this->date = $date;
@@ -24,12 +24,12 @@ class Expense
         $this->title = $title;
     }
 
-    public function getAmount(): float
+    public function getAmount(): string
     {
         return $this->amount;
     }
 
-    public function setAmount(float $amount)
+    public function setAmount(string $amount)
     {
         $this->amount = $amount;
     }

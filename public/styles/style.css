@@ -243,6 +243,7 @@ nav.adder:hover > ul.adder-list {
     text-decoration: none;
     font-family: 'Calistoga';
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .adder-link > i {
@@ -295,48 +296,92 @@ main {
     padding: 1em;
 }
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5em;
-    justify-content: center;
+.top {
+    height: 10vh;
 }
 
-.card {
-    position: relative;
-    width: 300px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    background-color: antiquewhite;
-    border-radius: 1rem;
-}
-
-.card > img {
-    width: 100%;
-    border-radius: 1rem 1rem 0 0;
-}
-
-
-.card > p {
-    margin: 0;
-    padding: 1em;
-    text-align: center;
-}
-
-
-.image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff00009e;
-    border-radius: 1rem 1rem 0 0;
+.top > h1 {
     font-size: 2rem;
-    font-weight: 900;
-    color: white;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.left-side {
+    width: 50%;
+}
+
+.comparisons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparisons > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparisons > div > h1 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0 2rem;
+    margin: 2rem;
+}
+
+.comparisons > div > h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 0 2rem;
+    margin: 2rem;
+}
+
+.right-side {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1.5rem;
+    height: 25rem;
+    width: 27rem;
+    margin: 3rem ;
+}
+
+.right-side > div.incomes-window {
+    background-color: #9CFFA8;
+}
+
+.incomes-window > h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem;
+}
+
+.right-side > div.expenses-window {
+    background-color: #FFBDBD;
+}
+
+.expenses-window > h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem;
 }
 
 .login-container {

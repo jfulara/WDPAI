@@ -1,10 +1,29 @@
 <?php
 require_once 'session_config.php';
+require_once __DIR__ . '/../../src/repository/OperationRepository.php';
 
 function outputUserName() {
     if (isset($_SESSION['user_id'])) {
         echo 'Witaj ' . $_SESSION['user_name'] . '!';
     }
+}
+
+function incomeToExpense(): array {
+    $operationRepository = new OperationRepository();
+
+    return $operationRepository->getIncomeToExpense();
+}
+
+function incomeSum(): string {
+    $operationRepository = new OperationRepository();
+
+    return $operationRepository->getIncomeSum();
+}
+
+function expenseSum(): string {
+    $operationRepository = new OperationRepository();
+
+    return $operationRepository->getExpenseSum();
 }
 ?>
 
@@ -19,6 +38,11 @@ function outputUserName() {
     <link href='https://fonts.googleapis.com/css?family=Average Sans' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/8fd9367667.js" crossorigin="anonymous"></script>
     <script src="public/scripts/nav.js" defer></script>
+    <style>
+        .income-to-expense > h2 {
+            color: <?php echo incomeToExpense()['color']; ?>;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -39,7 +63,7 @@ function outputUserName() {
             <li><a class="first active">Podsumowanie<i class="fa-solid fa-chevron-right"></i></a></li>
             <li><a>Analiza budżetu<i class="fa-solid fa-chevron-right"></i></a></li>
             <li><a>Cele miesięczne<i class="fa-solid fa-chevron-right"></i></a></li>
-            <li><a href="expenses">Historia wydatków<i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="operations">Historia operacji<i class="fa-solid fa-chevron-right"></i></a></li>
             <li><a>Statystyki<i class="fa-solid fa-chevron-right"></i></a></li>
             <li><a>Oszczędzanie<i class="fa-solid fa-chevron-right"></i></a></li>
         </ul>
@@ -78,7 +102,33 @@ function outputUserName() {
         </div>
     </nav>
     <main>
-        <h1>Podsumowanie miesiąca</h1>
+        <section class="top">
+            <h1>Podsumowanie miesiąca</h1>
+        </section>
+        <section class="bottom">
+            <section class="left-side">
+                <div class="comparisons">
+                    <div class="income-to-expense">
+                        <h1>Twój stosunek wpływów do wydatków w tym miesiącu to:</h1>
+                        <h2><?php echo incomeToExpense()['difference']; ?> zł</h2>
+                    </div>
+                </div>
+            </section>
+            <section class="right-side">
+                <div class="incomes-window">
+                    <h1>Wpływy: <?php echo incomeSum(); ?> zł</h1>
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="expenses-window">
+                    <h1>Wydatki: <?php echo expenseSum(); ?> zł</h1>
+                    <ul>
+
+                    </ul>
+                </div>
+            </section>
+        </section>
     </main>
 </body>
 </html>
